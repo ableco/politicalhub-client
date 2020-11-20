@@ -1,7 +1,9 @@
+import Layout from "../components/Layout";
+
 export default function Home() {
   return (
-    <div className="">
+    <Layout>
       <h1 className="text-neutral-800">PoliticalHub</h1>
-    </div>
+    </Layout>
   );
 }
