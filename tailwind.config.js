@@ -26,6 +26,7 @@ module.exports = {
       success: {
         light: "#C3E951",
         base: "#7BE376",
+        dark: "#57A554",
       },
 
       alert: {
