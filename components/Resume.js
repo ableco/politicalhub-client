@@ -1,3 +1,4 @@
+import PercentageBar from "../components/PercentageBar";
 import {
   Text,
   Flex,
@@ -18,7 +19,11 @@ export default function Resume() {
         <Text as="h2" className="mb-3" weight={TextWeight.SemiBold}>
           Declaraciones en Tweets o Noticias
         </Text>
-        bar
+        <PercentageBar
+          variant="success-base"
+          percentage="50%"
+          marginBottom="mb-3"
+        />
         <Flex className="mb-8" distribution="between">
           <Text as="p" size={TextSize.SM} color={Color.SuccessDark}>
             Mayormente veridicas
@@ -52,7 +57,6 @@ export default function Resume() {
         <Text as="p" weight={TextWeight.SemiBold} className="mb-5">
           Actual Partido Politico
         </Text>
-
         <Flex className="mb-5">
           <Frame
             className="mr-6"
