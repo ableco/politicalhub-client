@@ -1,0 +1,8 @@
+pre-commit:
+  commands:
+    prettier:
+      glob: "*.js"
+      run: npx prettier --write {staged_files}
+    lint:
+      glob: "*.js"
+      run: yarn lint {staged_files}
