@@ -41,3 +41,29 @@ export function Magnifier(props) {
     </svg>
   );
 }
+
+export function Completed(props) {
+  return (
+    <svg width={20} height={20} viewBox="0 0 20 20" fill="none" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10zm5.588-13.845a.75.75 0 00-1.176-.93l-6.536 8.27-.01.01a.124.124 0 01-.201-.005l-.01-.015-2.042-2.898a.75.75 0 10-1.226.864l2.037 2.892a1.623 1.623 0 002.632.077l6.532-8.265z"
+        fill="#7BE376"
+      />
+    </svg>
+  );
+}
+
+export function Incompleted(props) {
+  return (
+    <svg width={20} height={20} viewBox="0 0 20 20" fill="none" {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10 20c5.523 0 10-4.477 10-10S15.523 0 10 0 0 4.477 0 10s4.477 10 10 10zm3.788-13.788a.938.938 0 010 1.326L11.326 10l2.462 2.462a.937.937 0 01-1.326 1.326L10 11.326l-2.462 2.462a.938.938 0 01-1.326-1.326L8.674 10 6.212 7.538a.937.937 0 111.326-1.326L10 8.674l2.462-2.462a.937.937 0 011.326 0z"
+        fill="#EA5A54"
+      />
+    </svg>
+  );
+}
