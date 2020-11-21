@@ -12,7 +12,7 @@ import { Search } from "./Search";
 
 export function Nav() {
   return (
-    <Inline as="nav">
+    <Inline as="nav" className="p-4">
       <Inline space={5}>
         <Icon color={Color.Neutral800}>
           <Menu />
