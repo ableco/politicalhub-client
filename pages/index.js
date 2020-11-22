@@ -1,43 +1,39 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import { Nav } from "../components/Nav";
 import Layout from "../components/Layout";
-import Resume from "../components/Resume";
-import { Header } from "../components/Header";
-import Tabs from "../components/Tabs";
-import Ficha from "../components/Tabs/Ficha";
-import Denuncias from "../components/Tabs/Denuncias";
-import Declaraciones from "../components/Tabs/Declaraciones";
-import Historial from "../components/Tabs/Historial";
-import ContentTab from "../components/ContentTab";
+import PoliticalParties from "../components/PoliticalParties";
+import Candidates from "../components/Candidates";
 
-const tabs = [
-  { name: "Ficha", component: Ficha },
-  { name: "Denuncias", component: Denuncias },
-  { name: "Últimas Declaraciones", component: Declaraciones },
-  { name: "Historial Político", component: Historial },
-];
-
-export default function Home() {
-  const router = useRouter();
-  const [activeTab, setActiveTab] = useState(
-    router.query.activeTab ?? tabs[0].name,
-  );
-  const activeTabObject = tabs.find((tab) => tab.name === activeTab);
-
-  useEffect(() => {
-    setActiveTab(router.query.activeTab ?? tabs[0].name);
-  }, [router.query.activeTab, setActiveTab]);
-
+export default function Home({ politicalParties, candidates }) {
   return (
     <Layout>
       <Nav />
-      <Header />
-      <Resume variant="success" />
-      <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-      {activeTabObject && (
-        <ContentTab activeTabComponent={activeTabObject.component} />
-      )}
+      <main className="px-52 py-10">
+        <div className="max-w-2xl">
+          <p className="text-xl text-neutral-400">Bienvenido a votabien.pe</p>
+          <p className="text-xl text-neutral-400">
+            Nuestra misión es proveer información centralizada y validada de
+            candidatos y partidos politicos para la elección del 2021.
+          </p>
+        </div>
+        <PoliticalParties politicalParties={politicalParties} />
+        <Candidates candidates={candidates} />
+      </main>
     </Layout>
   );
+}
+
+export async function getServerSideProps() {
+  const responsePoliticalParties = await fetch(
+    `${process.env.API_URL}/organizaciones-politicas`,
+  );
+  const politicalParties = await responsePoliticalParties.json();
+  const responseCandidates = await fetch(`${process.env.API_URL}/congresistas`);
+  const candidates = await responseCandidates.json();
+
+  return {
+    props: {
+      politicalParties,
+      candidates,
+    },
+  };
 }
