@@ -16,9 +16,7 @@ export function Header({ candidate }) {
         <Center>
           <Avatar
             source={candidate.foto}
-            name="Joe Biden"
-            width="104"
-            height="104"
+            name={`${candidate.nombres}  ${candidate.apellido_paterno} ${candidate.apellido_materno}`}
             className="object-cover w-28 h-28"
           />
         </Center>
