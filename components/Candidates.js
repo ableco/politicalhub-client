@@ -1,14 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
+import { Avatar } from "@ableco/baseline";
 import Link from "next/link";
 import titleize from "../utils/titleize";
 
 function CandidateCard({ candidate }) {
   return (
     <div className="flex items-center">
-      <img
-        src={candidate.foto}
-        className="w-12 h-12 bg-neutral-200 rounded-full object-cover"
-        alt={`Logo ${candidate.nombres}`}
+      <Avatar
+        source={candidate.foto}
+        className="w-12 h-12 bg-neutral-200 object-cover"
+        name={`Logo ${candidate.fullName}`}
       />
       <div className="ml-4">
         <Link href={`/congresistas/${candidate.identificador}`}>
