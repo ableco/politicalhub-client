@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import {
   Icon,
   Inline,
@@ -19,15 +18,13 @@ export function Nav() {
         <Icon color={Color.Neutral800}>
           <Menu />
         </Icon>
-        <Link href="/">
-          <a>
-            <Text color={Color.Neutral800} weight={TextWeight.Bold}>
-              votabien
-              <Text color={Color.Primary} weight={TextWeight.Bold}>
-                .pe
-              </Text>
+        <Link href="/" passHref>
+          <Text as="a" color={Color.Neutral800} weight={TextWeight.Bold}>
+            votabien
+            <Text color={Color.Primary} weight={TextWeight.Bold}>
+              .pe
             </Text>
-          </a>
+          </Text>
         </Link>
         <Search />
       </Inline>
