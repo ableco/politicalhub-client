@@ -6,14 +6,14 @@ import Resume from "../../components/Resume";
 import { Header } from "../../components/Header";
 import Tabs from "../../components/Tabs";
 import Ficha from "../../components/Tabs/Ficha";
-import Denuncias from "../../components/Tabs/Denuncias";
+import Sentencias from "../../components/Tabs/Sentencias";
 import Declaraciones from "../../components/Tabs/Declaraciones";
 import Historial from "../../components/Tabs/Historial";
 import ContentTab from "../../components/ContentTab";
 
 const tabs = [
   { name: "Ficha", component: Ficha },
-  { name: "Denuncias", component: Denuncias },
+  { name: "Sentencias", component: Sentencias },
   { name: "Últimas Declaraciones", component: Declaraciones },
   { name: "Historial Político", component: Historial },
 ];
@@ -36,7 +36,10 @@ export default function CandidatePage({ candidate }) {
       <Resume variant="success" candidate={candidate} />
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTabObject && (
-        <ContentTab activeTabComponent={activeTabObject.component} />
+        <ContentTab
+          activeTabComponent={activeTabObject.component}
+          candidate={candidate}
+        />
       )}
     </Layout>
   );

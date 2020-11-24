@@ -12,7 +12,7 @@ export default function Tab({ tab, activeTab, setActiveTab }) {
   return (
     <div
       className={
-        "mr-12 pb-3 cursor-pointer " +
+        "mr-5 md:mr-12 pb-3 cursor-pointer " +
         (activeTab === tab.name ? "border-b-4 border-primary-base" : "")
       }
       onClick={handleOnClick}

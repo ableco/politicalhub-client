@@ -10,7 +10,7 @@ import {
 
 export default function Resume() {
   return (
-    <Flex as="section" className="py-8 px-10 mx-52 mt-12 bg-neutral-100">
+    <section className="flex flex-col md:flex-row py-8 px-10 mx-8 lg:mx-52 mt-12 bg-neutral-100">
       <Frame
         as="section"
         className="flex-grow"
@@ -101,6 +101,6 @@ export default function Resume() {
           </a>
         </Text>
       </Frame>
-    </Flex>
+    </section>
   );
 }
