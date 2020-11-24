@@ -1,3 +1,3 @@
-export default function ContentTab({ activeTabComponent }) {
-  return <div>{activeTabComponent()}</div>;
+export default function ContentTab({ activeTabComponent, candidate }) {
+  return <div>{activeTabComponent({ candidate })}</div>;
 }

@@ -21,7 +21,12 @@ export function Header({ candidate }) {
           />
         </Center>
         <Stack space={4}>
-          <Text as="h1" size={TextSize.XL3} weight={TextWeight.Bold}>
+          <Text
+            as="h1"
+            size={TextSize.XL3}
+            weight={TextWeight.Bold}
+            className="px-5"
+          >
             {titleize(
               `${candidate.nombres}  ${candidate.apellido_paterno} ${candidate.apellido_materno}`,
             )}
