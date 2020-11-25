@@ -27,13 +27,10 @@ export async function getServerSideProps() {
     `${process.env.API_URL}/organizaciones-politicas`,
   );
   const politicalParties = await responsePoliticalParties.json();
-  const responseCandidates = await fetch(`${process.env.API_URL}/congresistas`);
-  const candidates = await responseCandidates.json();
 
   return {
     props: {
       politicalParties,
-      candidates,
     },
   };
 }
