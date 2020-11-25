@@ -7,8 +7,9 @@ function paginatedData(data, page = 1) {
     (page - 1) * CONGRESS_LIMIT,
     page * CONGRESS_LIMIT,
   );
+  const nextPage = candidates.length > 0 ? page + 1 : null;
 
-  return { candidates, nextPage: page + 1 };
+  return { candidates, nextPage };
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
