@@ -62,19 +62,15 @@ export default function Candidates() {
             ))}
           </div>
           <div>
-            <button
-              onClick={() => fetchMore()}
-              disabled={!canFetchMore || isFetchingMore}
-              className="text-neutral-400"
-            >
-              {isFetchingMore ? (
-                "Cargando más..."
-              ) : (
-                <span>
-                  {canFetchMore ? "Cargar más..." : "Nada más que cargar"}
-                </span>
-              )}
-            </button>
+            {canFetchMore && (
+              <button
+                onClick={() => fetchMore()}
+                disabled={!canFetchMore || isFetchingMore}
+                className="text-neutral-400"
+              >
+                {isFetchingMore ? "Cargando más..." : "Cargar más.."}
+              </button>
+            )}
           </div>
         </>
       )}
