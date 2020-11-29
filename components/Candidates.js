@@ -26,7 +26,7 @@ function CandidateCard({ candidate }) {
   );
 }
 
-export default function Candidates() {
+export default function Candidates({ candidates }) {
   const {
     status,
     data,
@@ -35,6 +35,7 @@ export default function Candidates() {
     canFetchMore,
   } = useInfiniteQuery("candidates", fetchCandidates, {
     getFetchMore: (lastGroup, _allGroups) => lastGroup.nextPage,
+    initialData: [candidates],
   });
 
   return (
