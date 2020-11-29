@@ -16,7 +16,7 @@ function paginatedData(data, page = 1) {
 }
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default (req, res) => {
+export default async (req, res) => {
   const page = Number.parseInt(req.query.page || 1);
 
   if (cacheData) {
@@ -25,11 +25,9 @@ export default (req, res) => {
     return;
   }
 
-  fetch(`${process.env.API_URL}/congresistas`)
-    .then((res) => res.json())
-    .then((data) => {
-      cacheData = data;
-      res.statusCode = 200;
-      res.json(paginatedData(cacheData, page));
-    });
+  const response = await fetch(`${process.env.API_URL}/congresistas`);
+  const data = await response.json();
+  cacheData = data;
+  res.statusCode = 200;
+  res.json(paginatedData(cacheData, page));
 };
