@@ -32,6 +32,14 @@ module.exports = {
     "react/no-danger": ["warn"],
     "react/jsx-no-undef": "off",
     "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        components: ["Link"],
+        specialLink: ["hrefLeft", "hrefRight"],
+        aspects: ["invalidHref", "preferButton"],
+      },
+    ],
     "unicorn/filename-case": "off",
     "unicorn/prevent-abbreviations": "off",
     "unicorn/no-fn-reference-in-iterator": "off",
