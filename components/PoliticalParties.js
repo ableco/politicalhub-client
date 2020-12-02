@@ -1,4 +1,3 @@
-import { Color, Text, TextLeading } from "@ableco/baseline";
 import Link from "next/link";
 import titleize from "../utils/titleize";
 
@@ -11,14 +10,10 @@ function Card({ politicalParty }) {
         alt={`Logo ${politicalParty.nombre}`}
       />
       <div className="flex flex-col ml-4">
-        <Link href="/" passHref>
-          <Text as="a" color={Color.Primary}>
-            {titleize(politicalParty.nombre)}
-          </Text>
+        <Link href="/">
+          <a className="text-primary-base">{titleize(politicalParty.nombre)}</a>
         </Link>
-        <Text color={Color.Neutral400} leading={TextLeading.Normal}>
-          23 candidatos
-        </Text>
+        <span className="text-neutral-400">23 candidatos</span>
       </div>
     </div>
   );

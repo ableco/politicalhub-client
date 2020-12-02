@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import { Fragment } from "react";
-import { Avatar } from "@ableco/baseline";
 import { useInfiniteQuery } from "react-query";
 import Link from "next/link";
 import titleize from "../utils/titleize";
@@ -12,10 +10,10 @@ function fetchCandidates(_key, page = 1) {
 function CandidateCard({ candidate }) {
   return (
     <div className="flex items-center">
-      <Avatar
-        source={candidate.foto}
-        className="w-12 h-12 bg-neutral-200 object-cover"
-        name={`Logo ${candidate.fullName}`}
+      <img
+        src={candidate.foto}
+        className="w-12 h-12 bg-neutral-200 rounded-full object-cover"
+        alt={`Logo ${candidate.nombres}`}
       />
       <div className="ml-4">
         <Link href={`/congresistas/${candidate.identificador}`}>
