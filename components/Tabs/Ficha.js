@@ -184,10 +184,7 @@ export default function Ficha({ candidate }) {
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {candidate.inmuebles.map((inmueble, index) => (
-              <div
-                key={index}
-                className={"flex flex-col mt-4 " + (index !== 0 ? "" : "")}
-              >
+              <div key={index} className="flex flex-col mt-4">
                 <p className="text-neutral-800 text-sm font-normal">
                   {titleize(inmueble.tipo)}
                 </p>
@@ -204,10 +201,7 @@ export default function Ficha({ candidate }) {
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             {candidate.muebles.map((mueble, index) => (
-              <div
-                key={index}
-                className={"flex flex-col mt-4 " + (index !== 0 ? "ml-36" : "")}
-              >
+              <div key={index} className="flex flex-col mt-4">
                 <p className="text-neutral-800 text-sm font-normal">
                   {mueble.vehiculo.length > 1
                     ? titleize(mueble.vehiculo)
