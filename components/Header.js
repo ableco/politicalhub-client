@@ -31,7 +31,7 @@ export function Header({ candidate }) {
               `${candidate.nombres}  ${candidate.apellido_paterno} ${candidate.apellido_materno}`,
             )}
           </Text>
-          <Text color={Color.Neutral400}>
+          <Text color={Color.Neutral400} className="px-5">
             Candidato/a al Congreso por{" "}
             <Text color={Color.Primary}>
               {titleize(candidate.organizacion_politica)}

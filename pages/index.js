@@ -7,7 +7,7 @@ export default function Home({ politicalParties, candidates }) {
   return (
     <Layout>
       <Nav />
-      <main className="px-52 py-10">
+      <main className="px-8 lg:px-52 py-10">
         <div className="max-w-2xl">
           <p className="text-xl text-neutral-400">Bienvenido a votabien.pe</p>
           <p className="text-xl text-neutral-400">
