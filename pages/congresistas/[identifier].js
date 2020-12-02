@@ -18,7 +18,7 @@ const tabs = [
   { name: "Historial Político", component: Historial },
 ];
 
-export default function CandidatePage({ candidate }) {
+export default function CandidatePage({ candidate, politicalPartyLogo }) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(
     router.query.activeTab ?? tabs[0].name,
@@ -33,7 +33,11 @@ export default function CandidatePage({ candidate }) {
     <Layout>
       <Nav />
       <Header candidate={candidate} />
-      <Resume variant="success" candidate={candidate} />
+      <Resume
+        variant="success"
+        candidate={candidate}
+        politicalPartyLogo={politicalPartyLogo}
+      />
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTabObject && (
         <ContentTab
@@ -52,9 +56,19 @@ export async function getServerSideProps({ params }) {
   );
   const candidate = await responseCandidate.json();
 
+  const responsePoliticalParties = await fetch(
+    `${process.env.API_URL}/organizaciones-politicas`,
+  );
+  const politicalParties = await responsePoliticalParties.json();
+  const politicalPartyLogo = politicalParties.find(
+    (politicalParty) =>
+      politicalParty.nombre === candidate.organizacion_politica,
+  ).logo;
+
   return {
     props: {
       candidate,
+      politicalPartyLogo,
     },
   };
 }
