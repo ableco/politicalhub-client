@@ -1,42 +1,27 @@
-import {
-  Icon,
-  Inline,
-  Text,
-  Color,
-  Spacer,
-  TextSize,
-  TextWeight,
-} from "@ableco/baseline";
 import Link from "next/link";
 import { Menu } from "./Icons";
 import { Search } from "./Search";
 
 export function Nav() {
   return (
-    <Inline as="nav" className="p-4">
-      <Inline space={5}>
-        <Icon color={Color.Neutral800}>
+    <nav className="flex flex-no-wrap flex-row items-center justify-start p-4">
+      <div className="flex flex-no-wrap flex-row items-center justify-start space-x-5">
+        <span className="text-neutral-800">
           <Menu />
-        </Icon>
+        </span>
         <Link href="/" passHref>
-          <Text as="a" color={Color.Neutral800} weight={TextWeight.Bold}>
+          <a className="text-neutral-800 font-bold">
             votabien
-            <Text color={Color.Primary} weight={TextWeight.Bold}>
-              .pe
-            </Text>
-          </Text>
+            <span className="text-primary-base font-bold">.pe</span>
+          </a>
         </Link>
         <Search />
-      </Inline>
-      <Spacer />
-      <Inline space={5}>
-        <Text as="a" color={Color.Primary} size={TextSize.XS}>
-          ¿Quieres ayudar?
-        </Text>
-        <Text as="a" color={Color.Neutral800} size={TextSize.XS}>
-          Login
-        </Text>
-      </Inline>
-    </Inline>
+      </div>
+      <div style={{ flexGrow: 1 }} />
+      <div className="flex flex-no-wrap flex-row items-center justify-start space-x-5">
+        <a className="text-primary-base text-xs">¿Quieres ayudar?</a>
+        <a className="text-neutral-800 text-xs">Login</a>
+      </div>
+    </nav>
   );
 }
