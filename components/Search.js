@@ -9,13 +9,12 @@ export function Search() {
   }, []);
   return (
     <Input
-      size="md"
       placeholder="Search..."
       icon={<Magnifier />}
       onChange={type}
       value={filter}
       id="input-search"
-      label="Assign Owner"
+      label="Search"
       hideLabel
       name="search"
     />

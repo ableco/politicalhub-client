@@ -1,9 +1,5 @@
 module.exports = {
-  purge: [
-    "./node_modules/@ableco/baseline/dist/baseline.esm.js",
-    "./components/**/*.js",
-    "./pages/**/*.js",
-  ],
+  purge: ["./components/**/*.js", "./pages/**/*.js"],
   theme: {
     colors: {
       transparent: "transparent",
