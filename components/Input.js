@@ -1,4 +1,3 @@
-import cx from "clsx";
 import { useId } from "@reach/auto-id";
 import { useState } from "react";
 
@@ -36,13 +35,7 @@ export function Input({
         </label>
       ) : null}
 
-      <div
-        className={cx([
-          "flex flex-no-wrap flex-row items-center justify-start space-x-2",
-          "border border-white hover:border-neutral-600 focus-within:border-neutral-300",
-          "rounded-full bg-white w-full py-0 px-2",
-        ])}
-      >
+      <div className="flex flex-no-wrap flex-row items-center justify-start space-x-2 border border-white hover:border-neutral-600 focus-within:border-neutral-300 rounded-full bg-white w-full py-0 px-2">
         {icon ? (
           <label htmlFor={inputId} className="text-neutral-600 text-center">
             {icon}

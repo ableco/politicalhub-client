@@ -9,7 +9,7 @@ export function Nav() {
         <span className="text-neutral-800">
           <Menu />
         </span>
-        <Link href="/" passHref>
+        <Link href="/">
           <a className="text-neutral-800 font-bold">
             votabien
             <span className="text-primary-base font-bold">.pe</span>
