@@ -1,11 +1,16 @@
 import titleize from "../../utils/titleize";
 import { Completed, Incompleted } from "../Icons";
 
-function sum(array, accessor) {
-  // eslint-disable-next-line unicorn/no-reduce
-  return array.reduce(
-    (accumulator, current) => accumulator + accessor(current),
-    0,
+function sum(array, word) {
+  return (
+    array
+      .filter((element) => element.income_type.startsWith(word))
+      // eslint-disable-next-line unicorn/no-reduce
+      .reduce(
+        (accumulator, current) =>
+          accumulator + Number.parseFloat(current.amount),
+        0,
+      )
   );
 }
 
@@ -23,7 +28,9 @@ export default function Ficha({ candidate }) {
           <div className="flex mt-4">
             <span className="flex text-neutral-800 text-sm font-semibold flex-1">
               Primaria
-              {candidate.educacion.primaria ? (
+              {candidate.candidate_education_entries.find(
+                (e) => e.education_type === "primary",
+              )?.finished ? (
                 <Completed className="ml-3" />
               ) : (
                 <Incompleted className="ml-3" />
@@ -31,7 +38,9 @@ export default function Ficha({ candidate }) {
             </span>
             <span className="flex text-neutral-800 text-sm font-semibold flex-1">
               Secundaria
-              {candidate.educacion.secundaria ? (
+              {candidate.candidate_education_entries.find(
+                (e) => e.education_type === "secondary",
+              )?.finished ? (
                 <Completed className="ml-3" />
               ) : (
                 <Incompleted className="ml-3" />
@@ -39,43 +48,84 @@ export default function Ficha({ candidate }) {
             </span>
           </div>
         </div>
-        <div className="px-6 pt-4 pb-6">
-          <h4 className="text-xs text-neutral-400 font-semibold">
-            EDUCACIÓN UNIVERSITARIA
-          </h4>
-          {candidate.educacion.universitaria.map((estudio) => (
-            <div key={`${estudio.universidad} - ${estudio.carrera}`}>
-              <div className="flex mt-4">
-                <span className="text-neutral-800 text-sm font-normal flex-1">
-                  <span className="font-semibold">Centro de estudios:</span>{" "}
-                  {titleize(estudio.universidad)}
-                </span>
-                <span className="flex text-neutral-800 text-sm font-semibold flex-1">
-                  Concluido
-                  {estudio.concluida ? (
-                    <Completed className="ml-3" />
-                  ) : (
-                    <Incompleted className="ml-3" />
-                  )}
-                </span>
+        {candidate.candidate_university_education_entries.length > 0 ? (
+          <div className="px-6 pt-4 pb-6">
+            <h4 className="text-xs text-neutral-400 font-semibold">
+              EDUCACIÓN UNIVERSITARIA
+            </h4>
+            {candidate.candidate_university_education_entries.map((estudio) => (
+              <div key={`${estudio.university} - ${estudio.degree}`}>
+                <div className="flex mt-4">
+                  <span className="text-neutral-800 text-sm font-normal flex-1">
+                    <span className="font-semibold">Centro de estudios:</span>{" "}
+                    {titleize(estudio.university)}
+                  </span>
+                  <span className="flex text-neutral-800 text-sm font-semibold flex-1">
+                    Concluido
+                    {estudio.finished ? (
+                      <Completed className="ml-3" />
+                    ) : (
+                      <Incompleted className="ml-3" />
+                    )}
+                  </span>
+                </div>
+                <div className="flex mt-2">
+                  <span className="text-neutral-800 text-sm font-normal flex-1">
+                    <span className="font-semibold">Carrera:</span>{" "}
+                    {titleize(estudio.degree)}
+                  </span>
+                  <span className="flex text-neutral-800 text-sm font-semibold flex-1">
+                    Titulado
+                    {estudio.graduated ? (
+                      <Completed className="ml-3" />
+                    ) : (
+                      <Incompleted className="ml-3" />
+                    )}
+                  </span>
+                </div>
               </div>
-              <div className="flex mt-2">
-                <span className="text-neutral-800 text-sm font-normal flex-1">
-                  <span className="font-semibold">Carrera:</span>{" "}
-                  {titleize(estudio.carrera)}
-                </span>
-                <span className="flex text-neutral-800 text-sm font-semibold flex-1">
-                  Titulado
-                  {estudio.titulo ? (
-                    <Completed className="ml-3" />
-                  ) : (
-                    <Incompleted className="ml-3" />
-                  )}
-                </span>
+            ))}
+          </div>
+        ) : null}
+        {candidate.candidate_graduate_education_entries.length > 0 ? (
+          <div className="px-6 pt-4 pb-6">
+            <h4 className="text-xs text-neutral-400 font-semibold">
+              ESTUDIOS DE POSTGRADO Y MAESTRÍAS
+            </h4>
+            {candidate.candidate_graduate_education_entries.map((estudio) => (
+              <div key={`${estudio.grad_school} - ${estudio.major}`}>
+                <div className="flex mt-4">
+                  <span className="text-neutral-800 text-sm font-normal flex-1">
+                    <span className="font-semibold">Centro de estudios:</span>{" "}
+                    {titleize(estudio.grad_school)}
+                  </span>
+                  <span className="flex text-neutral-800 text-sm font-semibold flex-1">
+                    Concluido
+                    {estudio.finished ? (
+                      <Completed className="ml-3" />
+                    ) : (
+                      <Incompleted className="ml-3" />
+                    )}
+                  </span>
+                </div>
+                <div className="flex mt-2">
+                  <span className="text-neutral-800 text-sm font-normal flex-1">
+                    <span className="font-semibold">Carrera:</span>{" "}
+                    {titleize(estudio.major)}
+                  </span>
+                  <span className="flex text-neutral-800 text-sm font-semibold flex-1">
+                    Titulado
+                    {estudio.graduated ? (
+                      <Completed className="ml-3" />
+                    ) : (
+                      <Incompleted className="ml-3" />
+                    )}
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : null}
       </div>
 
       <div className="mt-4 border-neutral-200 border rounded">
@@ -83,22 +133,25 @@ export default function Ficha({ candidate }) {
           Experiencia Laboral
         </h3>
         <div className="px-6 pt-4 pb-4">
-          {candidate.experiencia_laboral.map((experiencia, index) => (
-            <div key={index} className={index !== 0 ? "mt-4" : ""}>
-              <p className="text-neutral-800 text-sm font-normal">
-                <span className="font-semibold">Centro de trabajo:</span>{" "}
-                {titleize(experiencia.centro_laboral)}
-              </p>
-              <p className="mt-2 text-neutral-800 text-sm font-normal">
-                <span className="font-semibold">Ocupación:</span>{" "}
-                {titleize(experiencia.ocupacion)}
-              </p>
-              <p className="mt-2 text-neutral-800 text-sm font-normal">
-                <span className="font-semibold">Periodo:</span>{" "}
-                {experiencia.desde} - {titleize(experiencia.hasta)}
-              </p>
-            </div>
-          ))}
+          {candidate.candidate_work_experience_entries.map(
+            (experiencia, index) => (
+              <div key={index} className={index !== 0 ? "mt-4" : ""}>
+                <p className="text-neutral-800 text-sm font-normal">
+                  <span className="font-semibold">Centro de trabajo:</span>{" "}
+                  {titleize(experiencia.workplace)}
+                </p>
+                <p className="mt-2 text-neutral-800 text-sm font-normal">
+                  <span className="font-semibold">Ocupación:</span>{" "}
+                  {titleize(experiencia.profession)}
+                </p>
+                <p className="mt-2 text-neutral-800 text-sm font-normal">
+                  <span className="font-semibold">Periodo:</span>{" "}
+                  {experiencia.start_year} -{" "}
+                  {experiencia.end_year || "Presente"}
+                </p>
+              </div>
+            ),
+          )}
         </div>
       </div>
 
@@ -115,20 +168,9 @@ export default function Ficha({ candidate }) {
               </p>
               <p className="mt-2 text-neutral-800 text-2xl font-normal">
                 S/{" "}
-                {(
-                  sum(
-                    candidate.ingresos,
-                    (ingreso) => ingreso.remuneracion_bruta_anual.publico,
-                  ) +
-                  sum(
-                    candidate.ingresos,
-                    (ingreso) =>
-                      ingreso.renta_bruta_anual_ejercicio_individual.publico,
-                  ) +
-                  sum(
-                    candidate.ingresos,
-                    (ingreso) => ingreso.otros_ingresos.publico,
-                  )
+                {sum(
+                  candidate.candidate_income_entries,
+                  "public",
                 ).toLocaleString("en")}
               </p>
             </div>
@@ -138,20 +180,9 @@ export default function Ficha({ candidate }) {
               </p>
               <p className="mt-2 text-neutral-800 text-2xl font-normal">
                 S/{" "}
-                {(
-                  sum(
-                    candidate.ingresos,
-                    (ingreso) => ingreso.remuneracion_bruta_anual.privado,
-                  ) +
-                  sum(
-                    candidate.ingresos,
-                    (ingreso) =>
-                      ingreso.renta_bruta_anual_ejercicio_individual.privado,
-                  ) +
-                  sum(
-                    candidate.ingresos,
-                    (ingreso) => ingreso.otros_ingresos.privado,
-                  )
+                {sum(
+                  candidate.candidate_income_entries,
+                  "private",
                 ).toLocaleString("en")}
               </p>
             </div>
@@ -159,21 +190,9 @@ export default function Ficha({ candidate }) {
               <p className="text-neutral-800 text-sm font-normal">Total</p>
               <p className="mt-2 text-neutral-800 text-2xl font-normal">
                 S/{" "}
-                {(
-                  sum(
-                    candidate.ingresos,
-                    (ingreso) => ingreso.remuneracion_bruta_anual.total,
-                  ) +
-                  sum(
-                    candidate.ingresos,
-                    (ingreso) =>
-                      ingreso.renta_bruta_anual_ejercicio_individual.total,
-                  ) +
-                  sum(
-                    candidate.ingresos,
-                    (ingreso) => ingreso.otros_ingresos.total,
-                  )
-                ).toLocaleString("en")}
+                {sum(candidate.candidate_income_entries, "p").toLocaleString(
+                  "en",
+                )}
               </p>
             </div>
           </div>
@@ -183,16 +202,18 @@ export default function Ficha({ candidate }) {
             BIENES INMUEBLES
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-            {candidate.inmuebles.map((inmueble, index) => (
-              <div key={index} className="flex flex-col mt-4">
-                <p className="text-neutral-800 text-sm font-normal">
-                  {titleize(inmueble.tipo)}
-                </p>
-                <p className="mt-2 text-neutral-800 text-2xl font-normal">
-                  S/ {inmueble.autovaluo.toLocaleString("en")}
-                </p>
-              </div>
-            ))}
+            {candidate.candidate_property_entries
+              .filter((e) => e.property_type === "real_estate")
+              .map((inmueble, index) => (
+                <div key={index} className="flex flex-col mt-4">
+                  <p className="text-neutral-800 text-sm font-normal">
+                    {inmueble.registry_type && titleize(inmueble.registry_type)}
+                  </p>
+                  <p className="mt-2 text-neutral-800 text-2xl font-normal">
+                    S/ {inmueble.value.toLocaleString("en")}
+                  </p>
+                </div>
+              ))}
           </div>
         </div>
         <div className="px-6 pt-4 pb-6">
@@ -200,18 +221,20 @@ export default function Ficha({ candidate }) {
             BIENES MUEBLES
           </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-            {candidate.muebles.map((mueble, index) => (
-              <div key={index} className="flex flex-col mt-4">
-                <p className="text-neutral-800 text-sm font-normal">
-                  {mueble.vehiculo.length > 1
-                    ? titleize(mueble.vehiculo)
-                    : "Vehículo"}
-                </p>
-                <p className="mt-2 text-neutral-800 text-2xl font-normal">
-                  S/ {mueble.valor.toLocaleString("en")}
-                </p>
-              </div>
-            ))}
+            {candidate.candidate_property_entries
+              .filter((e) => e.property_type === "vehicle")
+              .map((mueble, index) => (
+                <div key={index} className="flex flex-col mt-4">
+                  <p className="text-neutral-800 text-sm font-normal">
+                    {mueble.description
+                      ? titleize(mueble.description)
+                      : "Vehículo"}
+                  </p>
+                  <p className="mt-2 text-neutral-800 text-2xl font-normal">
+                    S/ {mueble.value.toLocaleString("en")}
+                  </p>
+                </div>
+              ))}
           </div>
         </div>
       </div>

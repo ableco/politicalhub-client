@@ -7,13 +7,16 @@ function Card({ politicalParty }) {
       <img
         src={politicalParty.logo}
         className="w-12 h-12 bg-neutral-200 rounded-md"
-        alt={`Logo ${politicalParty.nombre}`}
+        alt={`Logo ${politicalParty.name}`}
       />
       <div className="flex flex-col ml-4">
-        <Link href="/">
-          <a className="text-primary-base">{titleize(politicalParty.nombre)}</a>
+        <Link href={`/political-organizations/${politicalParty.slug}`}>
+          <a className="text-primary-base">{titleize(politicalParty.name)}</a>
         </Link>
-        <span className="text-neutral-400">23 candidatos</span>
+        <span className="text-neutral-400">
+          {politicalParty.political_organization_stat.total_candidates}{" "}
+          candidatos
+        </span>
       </div>
     </div>
   );
@@ -25,7 +28,7 @@ export default function PoliticalParties({ politicalParties }) {
       <h2 className="text-3xl font-extrabold">Partidos Políticos</h2>
       <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
         {politicalParties.map((politicalParty) => (
-          <Card key={politicalParty.nombre} politicalParty={politicalParty} />
+          <Card key={politicalParty.id} politicalParty={politicalParty} />
         ))}
       </div>
     </div>

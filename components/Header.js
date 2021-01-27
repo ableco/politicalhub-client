@@ -1,28 +1,45 @@
+import Link from "next/link";
 import titleize from "../utils/titleize";
 
-export function Header({ candidate }) {
+export function Header({ candidate, politicalParty }) {
   return (
     <div className="mt-16 flex flex-row justify-center items-center flex-no-wrap">
       <div className="flex flex-col items-stretch justify-start text-center space-y-6">
         <div className="mt-16 flex flex-row justify-center items-center flex-no-wrap">
           <img
-            src={candidate.foto}
-            className="w-28 h-28 bg-neutral-200 rounded-full object-cover"
-            alt={`${candidate.nombres}  ${candidate.apellido_paterno} ${candidate.apellido_materno}`}
+            src={candidate ? candidate.profile_photo_url : politicalParty.logo}
+            className={`w-28 h-28 bg-neutral-200 ${
+              candidate ? "rounded-full" : "rounded-md"
+            } object-cover`}
+            alt={
+              candidate
+                ? `${candidate.names}  ${candidate.family_name} ${candidate.mothers_maiden_name}`
+                : politicalParty.slug
+            }
           />
         </div>
         <div className="flex flex-col items-stretch justify-start text-center space-y-4">
           <h1 className="text-3xl font-bold px-5">
-            {titleize(
-              `${candidate.nombres}  ${candidate.apellido_paterno} ${candidate.apellido_materno}`,
-            )}
+            {candidate
+              ? titleize(
+                  `${candidate.names}  ${candidate.family_name} ${candidate.mothers_maiden_name}`,
+                )
+              : titleize(politicalParty.name)}
           </h1>
-          <span className="text-neutral-400 px-5">
-            Candidato/a al Congreso por{" "}
-            <span className="text-primary-base">
-              {titleize(candidate.organizacion_politica)}
+          {candidate ? (
+            <span className="text-neutral-400 px-5">
+              Candidato/a a {titleize(candidate.office)} por{" "}
+              <Link
+                href={`/political-organizations/${candidate.political_organization.slug}`}
+              >
+                <a className="text-primary-base">
+                  {titleize(candidate.political_organization.name)}
+                </a>
+              </Link>
             </span>
-          </span>
+          ) : (
+            <span className="text-neutral-400 px-5">Partido Político</span>
+          )}
         </div>
       </div>
     </div>
