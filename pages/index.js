@@ -15,7 +15,9 @@ export default function Home({ politicalParties, candidates }) {
             candidatos y partidos politicos para la elección del 2021.
           </p>
         </div>
-        <PoliticalParties politicalParties={politicalParties} />
+        <PoliticalParties
+          politicalParties={politicalParties.political_organizations}
+        />
         <Candidates candidates={candidates} />
       </main>
     </Layout>
@@ -24,12 +26,10 @@ export default function Home({ politicalParties, candidates }) {
 
 export async function getServerSideProps() {
   const responsePoliticalParties = await fetch(
-    `${process.env.API_URL}/organizaciones-politicas`,
+    `${process.env.API_URL}/political_organizations`,
   );
   const politicalParties = await responsePoliticalParties.json();
-  const responseCandidates = await fetch(
-    `${process.env.BASE_URL}/api/candidates?page=1`,
-  );
+  const responseCandidates = await fetch(`${process.env.API_URL}/candidates`);
   const candidates = await responseCandidates.json();
 
   return {

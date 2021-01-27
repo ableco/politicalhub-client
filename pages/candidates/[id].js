@@ -7,18 +7,18 @@ import { Header } from "../../components/Header";
 import Tabs from "../../components/Tabs";
 import Ficha from "../../components/Tabs/Ficha";
 import Sentencias from "../../components/Tabs/Sentencias";
-import Declaraciones from "../../components/Tabs/Declaraciones";
+// import Declaraciones from "../../components/Tabs/Declaraciones";
 import Historial from "../../components/Tabs/Historial";
 import ContentTab from "../../components/ContentTab";
 
 const tabs = [
   { name: "Ficha", component: Ficha },
   { name: "Sentencias", component: Sentencias },
-  { name: "Últimas Declaraciones", component: Declaraciones },
+  // { name: "Últimas Declaraciones", component: Declaraciones },
   { name: "Historial Político", component: Historial },
 ];
 
-export default function CandidatePage({ candidate, politicalPartyLogo }) {
+export default function CandidatePage({ candidate, politicalParty }) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(
     router.query.activeTab ?? tabs[0].name,
@@ -34,9 +34,8 @@ export default function CandidatePage({ candidate, politicalPartyLogo }) {
       <Nav />
       <Header candidate={candidate} />
       <Resume
-        variant="success"
         candidate={candidate}
-        politicalPartyLogo={politicalPartyLogo}
+        politicalParty={politicalParty.political_organization}
       />
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTabObject && (
@@ -50,25 +49,21 @@ export default function CandidatePage({ candidate, politicalPartyLogo }) {
 }
 
 export async function getServerSideProps({ params }) {
-  const { identifier } = params;
+  const { id } = params;
   const responseCandidate = await fetch(
-    `${process.env.API_URL}/congresistas/${identifier}`,
+    `${process.env.API_URL}/candidates/${id}?include=person,person.individual_financial_contributions,person.electoral_history_entries,person.tax_debts,electoral_process,political_organization,candidate_education_entries,candidate_university_education_entries,candidate_graduate_education_entries,candidate_work_experience_entries,candidate_political_party_office_entries,candidate_previous_elected_office_entries,candidate_political_organization_resignation_entries,candidate_criminal_conviction_entries,candidate_civil_judgement_entries,candidate_income_entries,candidate_property_entries`,
   );
-  const candidate = await responseCandidate.json();
+  const { candidate } = await responseCandidate.json();
 
-  const responsePoliticalParties = await fetch(
-    `${process.env.API_URL}/organizaciones-politicas`,
+  const responsePoliticalParty = await fetch(
+    `${process.env.API_URL}/political_organizations/${candidate.political_organization.slug}`,
   );
-  const politicalParties = await responsePoliticalParties.json();
-  const politicalPartyLogo = politicalParties.find(
-    (politicalParty) =>
-      politicalParty.nombre === candidate.organizacion_politica,
-  ).logo;
+  const politicalParty = await responsePoliticalParty.json();
 
   return {
     props: {
       candidate,
-      politicalPartyLogo,
+      politicalParty,
     },
   };
 }

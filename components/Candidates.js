@@ -4,19 +4,27 @@ import Link from "next/link";
 import titleize from "../utils/titleize";
 
 function fetchCandidates(_key, page = 1) {
-  return fetch(`/api/candidates?page=${page}`).then((res) => res.json());
+  return fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/candidates?page=${page}`,
+  ).then((res) => res.json());
+}
+
+function fetchCandidatesOnPoliticalParty(_key, page = 1, politicalParty) {
+  return fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/candidates?political_organization=${politicalParty.id}&page=${page}`,
+  ).then((res) => res.json());
 }
 
 function CandidateCard({ candidate }) {
   return (
     <div className="flex items-center">
       <img
-        src={candidate.foto}
+        src={candidate.profile_photo_url}
         className="w-12 h-12 bg-neutral-200 rounded-full object-cover"
-        alt={`Logo ${candidate.nombres}`}
+        alt={`Logo ${candidate.names}`}
       />
       <div className="ml-4">
-        <Link href={`/congresistas/${candidate.identificador}`}>
+        <Link href={`/candidates/${candidate.id}`}>
           <a className="text-primary-base">{titleize(candidate.fullName)}</a>
         </Link>
       </div>
@@ -24,21 +32,30 @@ function CandidateCard({ candidate }) {
   );
 }
 
-export default function Candidates({ candidates }) {
+export default function Candidates({ candidates, politicalParty }) {
   const {
     status,
     data,
     isFetchingMore,
     fetchMore,
     canFetchMore,
-  } = useInfiniteQuery("candidates", fetchCandidates, {
-    getFetchMore: (lastGroup, _allGroups) => lastGroup.nextPage,
-    initialData: [candidates],
-  });
+  } = useInfiniteQuery(
+    politicalParty ? `candidates-${politicalParty.slug}` : "candidates",
+    politicalParty
+      ? (key, page) =>
+          fetchCandidatesOnPoliticalParty(key, page, politicalParty)
+      : fetchCandidates,
+    {
+      getFetchMore: (lastGroup, _allGroups) => lastGroup.meta.next_page,
+      initialData: [candidates],
+    },
+  );
 
   return (
     <div className="mt-16">
-      <h2 className="text-3xl font-extrabold">Candidatos</h2>
+      {politicalParty ? null : (
+        <h2 className="text-3xl font-extrabold">Candidatos</h2>
+      )}
       {status === "loading" ? (
         "loading..."
       ) : (
@@ -48,7 +65,7 @@ export default function Candidates({ candidates }) {
               <Fragment key={i}>
                 {group.candidates.map((candidate) => {
                   {
-                    const fullName = `${candidate.nombres}  ${candidate.apellido_paterno} ${candidate.apellido_materno}`;
+                    const fullName = `${candidate.names}  ${candidate.family_name} ${candidate.mothers_maiden_name}`;
                     return (
                       <CandidateCard
                         key={fullName}
