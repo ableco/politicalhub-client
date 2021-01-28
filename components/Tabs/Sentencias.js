@@ -13,13 +13,14 @@ export default function Sentencias({ candidate }) {
             <p className="flex text-neutral-800 text-sm font-semibold">
               <div className="w-2 h-2 bg-alert-base rounded-full mr-4" />
               Delito:{" "}
-              <span className="font-normal ml-1">
-                {titleize(delito.judgement_type)}
-              </span>
+              <span className="font-normal ml-1">{titleize(delito.crime)}</span>
             </p>
             <p className="text-neutral-800 text-sm font-semibold ml-6">
               Fallo o Pena:{" "}
-              <span className="font-normal">{titleize(delito.sentence)}</span>
+              <span className="font-normal">
+                {titleize(delito.sentence)} - {titleize(delito.sentence_type)} -{" "}
+                {titleize(delito.status)}
+              </span>
             </p>
           </div>
         </div>
