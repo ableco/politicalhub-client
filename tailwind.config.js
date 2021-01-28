@@ -1,5 +1,19 @@
 module.exports = {
-  purge: ["./components/**/*.js", "./pages/**/*.js"],
+  purge: {
+    content: ["./components/**/*.js", "./pages/**/*.js"],
+    options: {
+      safelist: [
+        "text-alert-base",
+        "text-warning-dark",
+        "text-success-base",
+        "text-success-light",
+        "bg-alert-base",
+        "bg-warning-dark",
+        "bg-success-base",
+        "bg-success-light",
+      ],
+    },
+  },
   theme: {
     colors: {
       transparent: "transparent",

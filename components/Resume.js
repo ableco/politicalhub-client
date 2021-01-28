@@ -3,6 +3,11 @@ import colorize from "../utils/colorize";
 import titleize from "../utils/titleize";
 
 function PartidoSection({ candidate, politicalParty, metaPoliticalParties }) {
+  const message = colorize(
+    politicalParty.political_organization_stat.total_sentences,
+    metaPoliticalParties.average_sentences,
+  ).message;
+
   return (
     <div className="flex mt-6 xl:mt-0 ml-0 xl:ml-6">
       {candidate ? (
@@ -13,12 +18,14 @@ function PartidoSection({ candidate, politicalParty, metaPoliticalParties }) {
         />
       ) : null}
       <div
-        className={`flex justify-center items-center max-h-12 bg-${
+        className={
           colorize(
             politicalParty.political_organization_stat.total_sentences,
             metaPoliticalParties.average_sentences,
-          ).color
-        } px-3 py-2 fitco rounded-md`}
+            "bg",
+            "flex justify-center items-center max-h-12 px-3 py-2 rounded-md",
+          ).classes
+        }
       >
         <span className="text-white font-bold text-xl">
           {politicalParty.political_organization_stat.total_sentences}
@@ -38,19 +45,16 @@ function PartidoSection({ candidate, politicalParty, metaPoliticalParties }) {
           <p className="font-semibold">Sentencias Acumuladas</p>
         )}
         <p
-          className={`text-${
+          className={
             colorize(
               politicalParty.political_organization_stat.total_sentences,
               metaPoliticalParties.average_sentences,
-            ).color
-          } text-sm`}
-        >
-          {
-            colorize(
-              politicalParty.political_organization_stat.total_sentences,
-              metaPoliticalParties.average_sentences,
-            ).message
+              "text",
+              "text-sm",
+            ).classes
           }
+        >
+          {message}
         </p>
       </div>
     </div>
@@ -65,15 +69,23 @@ export default function Resume({
   const denunciasQuantity =
     candidate.candidate_civil_judgement_entries.length +
     candidate.candidate_criminal_conviction_entries.length;
+  const message = colorize(
+    denunciasQuantity,
+    metaPoliticalParties.average_sentences,
+  ).message;
 
   return (
     <section className="grid grid-cols-1 xl:grid-cols-2 relative py-8 px-10 mx-4 lg:mx-52 mt-12 bg-neutral-100">
       <div className="flex">
         <div
-          className={`flex justify-center items-center max-h-12 bg-${
-            colorize(denunciasQuantity, metaPoliticalParties.average_sentences)
-              .color
-          } px-3 py-2 fitco rounded-md`}
+          className={
+            colorize(
+              denunciasQuantity,
+              metaPoliticalParties.average_sentences,
+              "bg",
+              "flex justify-center items-center max-h-12 px-3 py-2 rounded-md",
+            ).classes
+          }
         >
           <span className="text-white font-bold text-xl">
             {denunciasQuantity}
@@ -82,19 +94,16 @@ export default function Resume({
         <div className="ml-4">
           <p className="font-semibold">Sentencias</p>
           <p
-            className={`text-${
+            className={
               colorize(
                 denunciasQuantity,
                 metaPoliticalParties.average_sentences,
-              ).color
-            } text-sm`}
-          >
-            {
-              colorize(
-                denunciasQuantity,
-                metaPoliticalParties.average_sentences,
-              ).message
+                "text",
+                "text-sm",
+              ).classes
             }
+          >
+            {message}
           </p>
         </div>
       </div>
