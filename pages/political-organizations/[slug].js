@@ -10,7 +10,11 @@ import ContentTab from "../../components/ContentTab";
 
 const tabs = [{ name: "Candidatos", component: Candidatos }];
 
-export default function PoliticalPartyPage({ politicalParty, candidates }) {
+export default function PoliticalPartyPage({
+  politicalParty,
+  candidates,
+  metaPoliticalParties,
+}) {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(
     router.query.activeTab ?? tabs[0].name,
@@ -25,7 +29,10 @@ export default function PoliticalPartyPage({ politicalParty, candidates }) {
     <Layout>
       <Nav />
       <Header politicalParty={politicalParty} />
-      <ResumePoliticalParty politicalParty={politicalParty} />
+      <ResumePoliticalParty
+        politicalParty={politicalParty}
+        metaPoliticalParties={metaPoliticalParties}
+      />
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       {activeTabObject && (
         <ContentTab
@@ -45,15 +52,22 @@ export async function getServerSideProps({ params }) {
     `${process.env.API_URL}/political_organizations/${slug}`,
   );
   const politicalParty = await responsePoliticalParty.json();
+
   const responseCandidates = await fetch(
     `${process.env.API_URL}/candidates?political_organization=${politicalParty.political_organization.id}`,
   );
   const candidates = await responseCandidates.json();
 
+  const responsePoliticalParties = await fetch(
+    `${process.env.API_URL}/political_organizations`,
+  );
+  const politicalParties = await responsePoliticalParties.json();
+
   return {
     props: {
       politicalParty: politicalParty.political_organization,
       candidates,
+      metaPoliticalParties: politicalParties.meta,
     },
   };
 }

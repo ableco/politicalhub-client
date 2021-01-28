@@ -167,11 +167,10 @@ export default function Ficha({ candidate }) {
                 Sector Público
               </p>
               <p className="mt-2 text-neutral-800 text-2xl font-normal">
-                S/{" "}
-                {sum(
-                  candidate.candidate_income_entries,
-                  "public",
-                ).toLocaleString("en")}
+                {new Intl.NumberFormat("es-PE", {
+                  style: "currency",
+                  currency: "PEN",
+                }).format(sum(candidate.candidate_income_entries, "public"))}
               </p>
             </div>
             <div className="flex flex-col mt-4">
@@ -179,20 +178,19 @@ export default function Ficha({ candidate }) {
                 Sector Privado
               </p>
               <p className="mt-2 text-neutral-800 text-2xl font-normal">
-                S/{" "}
-                {sum(
-                  candidate.candidate_income_entries,
-                  "private",
-                ).toLocaleString("en")}
+                {new Intl.NumberFormat("es-PE", {
+                  style: "currency",
+                  currency: "PEN",
+                }).format(sum(candidate.candidate_income_entries, "private"))}
               </p>
             </div>
             <div className="flex flex-col mt-4">
               <p className="text-neutral-800 text-sm font-normal">Total</p>
               <p className="mt-2 text-neutral-800 text-2xl font-normal">
-                S/{" "}
-                {sum(candidate.candidate_income_entries, "p").toLocaleString(
-                  "en",
-                )}
+                {new Intl.NumberFormat("es-PE", {
+                  style: "currency",
+                  currency: "PEN",
+                }).format(sum(candidate.candidate_income_entries, "p"))}
               </p>
             </div>
           </div>
@@ -210,7 +208,10 @@ export default function Ficha({ candidate }) {
                     {inmueble.registry_type && titleize(inmueble.registry_type)}
                   </p>
                   <p className="mt-2 text-neutral-800 text-2xl font-normal">
-                    S/ {inmueble.value.toLocaleString("en")}
+                    {new Intl.NumberFormat("es-PE", {
+                      style: "currency",
+                      currency: "PEN",
+                    }).format(inmueble.value)}
                   </p>
                 </div>
               ))}
@@ -231,7 +232,10 @@ export default function Ficha({ candidate }) {
                       : "Vehículo"}
                   </p>
                   <p className="mt-2 text-neutral-800 text-2xl font-normal">
-                    S/ {mueble.value.toLocaleString("en")}
+                    {new Intl.NumberFormat("es-PE", {
+                      style: "currency",
+                      currency: "PEN",
+                    }).format(mueble.value)}
                   </p>
                 </div>
               ))}
