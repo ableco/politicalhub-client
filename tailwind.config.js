@@ -6,11 +6,11 @@ module.exports = {
         "text-alert-base",
         "text-warning-dark",
         "text-success-base",
-        "text-success-light",
+        "text-warning-light",
         "bg-alert-base",
         "bg-warning-dark",
         "bg-success-base",
-        "bg-success-light",
+        "bg-warning-light",
       ],
     },
   },
@@ -45,6 +45,7 @@ module.exports = {
       },
 
       warning: {
+        light: "#F9D548",
         base: "#AB2A21",
         dark: "#EE9135",
       },
