@@ -7,6 +7,7 @@ export function Search() {
   const type = useCallback((event) => {
     setFilter(event.target.value);
   }, []);
+
   return (
     <Input
       placeholder="Search..."

@@ -2,17 +2,27 @@ import { Fragment } from "react";
 import { useInfiniteQuery } from "react-query";
 import Link from "next/link";
 import titleize from "../utils/titleize";
+import buildURL from "../utils/buildURL";
+import fetchJSON from "../utils/fetchJSON";
 
-function fetchCandidates(_key, page = 1) {
-  return fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/candidates?page=${page}`,
-  ).then((res) => res.json());
+function fetchCandidates({ page = 1, filter = {} }) {
+  const url = buildURL({ filter });
+  url.searchParams.append("page", page);
+
+  return fetchJSON(url.toString());
 }
 
-function fetchCandidatesOnPoliticalParty(_key, page = 1, politicalParty) {
-  return fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/candidates?political_organization=${politicalParty.id}&page=${page}`,
-  ).then((res) => res.json());
+function fetchCandidatesOnPoliticalParty({
+  page = 1,
+  politicalParty,
+  filter = {},
+}) {
+  const url = buildURL({ filter });
+
+  url.searchParams.append("political_organization", politicalParty.id);
+  url.searchParams.append("page", page);
+
+  return fetchJSON(url.toString());
 }
 
 function CandidateCard({ candidate }) {
@@ -32,7 +42,14 @@ function CandidateCard({ candidate }) {
   );
 }
 
-export default function Candidates({ candidates, politicalParty }) {
+export default function Candidates({
+  candidates,
+  politicalParty,
+  heading = "Candidatos",
+  filter = {},
+}) {
+  const url = buildURL({ filter });
+
   const {
     status,
     data,
@@ -40,11 +57,13 @@ export default function Candidates({ candidates, politicalParty }) {
     fetchMore,
     canFetchMore,
   } = useInfiniteQuery(
-    politicalParty ? `candidates-${politicalParty.slug}` : "candidates",
+    politicalParty
+      ? `candidates-${politicalParty.slug}`
+      : `candidates${url.search}`,
     politicalParty
       ? (key, page) =>
-          fetchCandidatesOnPoliticalParty(key, page, politicalParty)
-      : fetchCandidates,
+          fetchCandidatesOnPoliticalParty({ key, page, politicalParty, filter })
+      : (key, page) => fetchCandidates({ key, page, filter }),
     {
       getFetchMore: (lastGroup, _allGroups) => lastGroup.meta.next_page,
       initialData: [candidates],
@@ -54,7 +73,7 @@ export default function Candidates({ candidates, politicalParty }) {
   return (
     <div className="mt-16">
       {politicalParty ? null : (
-        <h2 className="text-3xl font-extrabold">Candidatos</h2>
+        <h2 className="text-3xl font-extrabold">{heading}</h2>
       )}
       {status === "loading" ? (
         "loading..."
@@ -65,7 +84,7 @@ export default function Candidates({ candidates, politicalParty }) {
               <Fragment key={i}>
                 {group.candidates.map((candidate) => {
                   {
-                    const fullName = `${candidate.names}  ${candidate.family_name} ${candidate.mothers_maiden_name}`;
+                    const fullName = `${candidate.names} ${candidate.family_name} ${candidate.mothers_maiden_name}`;
                     return (
                       <CandidateCard
                         key={fullName}
