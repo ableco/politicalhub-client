@@ -1,3 +1,4 @@
+import PoliticalPartiesContext from "../contexts/politicalParties";
 import { Nav } from "../components/Nav";
 import Layout from "../components/Layout";
 import PoliticalParties from "../components/PoliticalParties";
@@ -14,7 +15,7 @@ export default function Home({
     <Layout>
       <Nav />
       <section className="bg-neutral-100 p-10">
-        <article className="flex flex-no-wrap flex-row items-center content-between gap-3 max-w-screen-lg m-auto">
+        <article className="flex flex-no-wrap flex-row items-center gap-3 max-w-screen-lg m-auto">
           <aside
             className="w-2/4 rounded-lg p-8 text-white"
             style={{
@@ -46,18 +47,23 @@ export default function Home({
         <PoliticalParties
           politicalParties={politicalParties.political_organizations}
         />
-        <Candidates
-          key="presidential"
-          candidates={presidentialCandidates}
-          heading="A la Presidencia"
-          filter={{ office: 1, per_page: 20 }}
-        />
-        <Candidates
-          candidates={candidates}
-          heading="Al Congreso"
-          filterByUbigeo
-          filter={{ office: 4, per_page: 9 }}
-        />
+        <PoliticalPartiesContext.Provider
+          value={politicalParties.political_organizations}
+        >
+          <Candidates
+            key="presidential"
+            candidates={presidentialCandidates}
+            heading="A la Presidencia"
+            filter={{ office: 1, per_page: 20 }}
+          />
+          <Candidates
+            candidates={candidates}
+            heading="Al Congreso"
+            filterByUbigeo
+            filter={{ office: 4, per_page: 9 }}
+            showNumber
+          />
+        </PoliticalPartiesContext.Provider>
       </main>
     </Layout>
   );

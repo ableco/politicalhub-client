@@ -1,6 +1,7 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState, useEffect, useContext } from "react";
 import { useInfiniteQuery } from "react-query";
 import Link from "next/link";
+import PoliticalPartiesContext from "../contexts/politicalParties";
 import titleize from "../utils/titleize";
 import buildURL from "../utils/buildURL";
 import fetchJSON from "../utils/fetchJSON";
@@ -123,20 +124,43 @@ function fetchCandidates({ filter, page = 1 }) {
   return fetchJSON(url.toString());
 }
 
-function CandidateCard({ candidate }) {
+function CandidateCard({ candidate, showNumber }) {
+  const politicalParties = useContext(PoliticalPartiesContext);
+  const politicalParty = politicalParties.find(
+    (politicalParty) =>
+      politicalParty.id === candidate.political_organization_id,
+  );
+
   return (
-    <div className="flex items-center">
+    <article className="flex items-center">
       <img
         src={candidate.profile_photo_url}
         className="w-12 h-12 bg-neutral-200 rounded-full object-cover"
         alt={`Logo ${candidate.names}`}
       />
-      <div className="ml-4">
+      <aside className="ml-4 w-full">
         <Link href={`/candidates/${candidate.id}`}>
-          <a className="text-primary-base">{titleize(candidate.fullName)}</a>
+          <h6 className="flex flex-row items-center justify-between w-full">
+            <a
+              className="text-primary-base"
+              style={{ maxWidth: "calc(100% - 4rem)" }}
+            >
+              {titleize(candidate.fullName)}
+            </a>
+            {showNumber && candidate.number ? (
+              <span className="text-sm font-semibold text-center leading-7 border-2 rounded text-neutral-700 border-neutral-700 w-8 h-8 mr-4">
+                {candidate.number}
+              </span>
+            ) : null}
+          </h6>
         </Link>
-      </div>
-    </div>
+        {politicalParty ? (
+          <span className="text-neutral-400">
+            {titleize(politicalParty.name)}
+          </span>
+        ) : null}
+      </aside>
+    </article>
   );
 }
 
@@ -145,6 +169,7 @@ export default function Candidates({
   politicalParty,
   filterByUbigeo,
   heading = "Candidatos",
+  showNumber,
   filter = {},
 }) {
   const [filteredBy, setFilteredBy] = useState(() => {
@@ -175,6 +200,7 @@ export default function Candidates({
 
   useEffect(() => {
     refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filteredBy]);
 
   return (
@@ -217,6 +243,7 @@ export default function Candidates({
                     return (
                       <CandidateCard
                         key={fullName}
+                        showNumber={showNumber}
                         candidate={{ ...candidate, fullName }}
                       />
                     );
