@@ -13,14 +13,36 @@ export default function Home({
   return (
     <Layout>
       <Nav />
-      <main className="px-8 lg:px-52 py-10">
-        <div className="max-w-2xl">
-          <p className="text-xl text-neutral-400">Bienvenido a Votemos.pe</p>
-          <p className="text-xl text-neutral-400">
-            Nuestra misión es proveer información centralizada y validada de
-            candidatos y partidos politicos para la elección del 2021.
-          </p>
-        </div>
+      <section className="bg-neutral-100 p-10">
+        <article className="flex flex-no-wrap flex-row items-center content-between gap-3 max-w-screen-lg m-auto">
+          <aside
+            className="w-2/4 rounded-lg p-8 text-white"
+            style={{
+              background:
+                "linear-gradient(105.99deg, #FF5C70 0%, #F74887 99.63%)",
+            }}
+          >
+            <h3 className="text-3xl font-extrabold mb-6">Encuentra Tu Match</h3>
+            <p style={{ maxWidth: 300 }}>
+              Responde una serie de preguntas y descubre el candidato mas
+              compatible contigo y tus preferencias.
+            </p>
+          </aside>
+          <aside
+            className="w-2/4 rounded-lg p-8 text-white"
+            style={{
+              background: "linear-gradient(105.7deg, #607AD6 0%, #4E64D8 100%)",
+            }}
+          >
+            <h3 className="text-3xl font-extrabold mb-6">Trivia Electoral</h3>
+            <p style={{ maxWidth: 300 }}>
+              ¿Qué tan informado estas para votar? Juega a nuestra trivia y reta
+              a tus contactos.
+            </p>
+          </aside>
+        </article>
+      </section>
+      <main className="max-w-screen-lg m-auto">
         <PoliticalParties
           politicalParties={politicalParties.political_organizations}
         />
