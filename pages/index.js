@@ -42,7 +42,7 @@ export default function Home({
           </aside>
         </article>
       </section>
-      <main className="max-w-screen-lg m-auto">
+      <main className="max-w-screen-lg m-auto mb-10">
         <PoliticalParties
           politicalParties={politicalParties.political_organizations}
         />
@@ -55,6 +55,7 @@ export default function Home({
         <Candidates
           candidates={candidates}
           heading="Al Congreso"
+          filterByUbigeo
           filter={{ office: 4, per_page: 9 }}
         />
       </main>
