@@ -1,5 +1,6 @@
 import PoliticalPartiesContext from "../contexts/politicalParties";
 import { Nav } from "../components/Nav";
+import Footer from "../components/Footer";
 import Layout from "../components/Layout";
 import PoliticalParties from "../components/PoliticalParties";
 import Candidates from "../components/Candidates";
@@ -65,6 +66,7 @@ export default function Home({
           />
         </PoliticalPartiesContext.Provider>
       </main>
+      <Footer />
     </Layout>
   );
 }

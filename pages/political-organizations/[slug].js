@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Nav } from "../../components/Nav";
+import Footer from "../../components/Footer";
 import Layout from "../../components/Layout";
 import { ResumePoliticalParty } from "../../components/Resume";
 import { Header } from "../../components/Header";
@@ -41,6 +42,7 @@ export default function PoliticalPartyPage({
           candidates={candidates}
         />
       )}
+      <Footer />
     </Layout>
   );
 }
