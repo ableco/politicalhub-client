@@ -126,7 +126,7 @@ function fetchCandidates({ filter, page = 1 }) {
 
 function CandidateCard({ candidate, showNumber }) {
   const politicalParties = useContext(PoliticalPartiesContext);
-  const politicalParty = politicalParties.find(
+  const politicalParty = politicalParties?.find(
     (politicalParty) =>
       politicalParty.id === candidate.political_organization_id,
   );
@@ -140,9 +140,9 @@ function CandidateCard({ candidate, showNumber }) {
       />
       <aside className="ml-4 w-full">
         <Link href={`/candidates/${candidate.id}`}>
-          <h6 className="flex flex-row items-center justify-between w-full">
+          <h6 className="flex flex-row items-center justify-between w-full cursor-pointer">
             <a
-              className="text-primary-base"
+              className="text-primary-base cursor-pointer"
               style={{ maxWidth: showNumber ? "calc(100% - 4rem)" : null }}
             >
               {titleize(candidate.fullName)}
@@ -204,14 +204,14 @@ export default function Candidates({
   }, [filteredBy]);
 
   return (
-    <div className="mt-16">
+    <div className={politicalParty ? "" : "mt-16"}>
       {politicalParty ? null : (
         <h2 className="text-3xl font-extrabold">{heading}</h2>
       )}
       {filterByUbigeo ? (
         // eslint-disable-next-line jsx-a11y/no-onchange
         <select
-          className="p-3 mt-6"
+          className="p-3 mt-6 w-full sm:w-full md:w-auto"
           value={filteredBy.ubigeo}
           onChange={(event) => {
             const value = event.target.value;
@@ -238,16 +238,14 @@ export default function Candidates({
             {data.map((group, i) => (
               <Fragment key={i}>
                 {group.candidates.map((candidate) => {
-                  {
-                    const fullName = `${candidate.names} ${candidate.family_name} ${candidate.mothers_maiden_name}`;
-                    return (
-                      <CandidateCard
-                        key={fullName}
-                        showNumber={showNumber}
-                        candidate={{ ...candidate, fullName }}
-                      />
-                    );
-                  }
+                  const fullName = `${candidate.names} ${candidate.family_name} ${candidate.mothers_maiden_name}`;
+                  return (
+                    <CandidateCard
+                      key={fullName}
+                      showNumber={showNumber}
+                      candidate={{ ...candidate, fullName }}
+                    />
+                  );
                 })}
               </Fragment>
             ))}
