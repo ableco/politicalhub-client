@@ -16,22 +16,24 @@ export default function Home({
     <Layout>
       <Nav />
       <section className="bg-neutral-100 p-10">
-        <article className="flex flex-no-wrap flex-row items-center gap-3 max-w-screen-lg m-auto">
+        <article className="flex flex-nowrap flex-col sm:flex-col md:flex-row items-center gap-3 max-w-screen-lg m-auto">
           <aside
-            className="w-2/4 rounded-lg p-8 text-white"
+            className="w-full sm:w-3/4 md:w-2/4 rounded-lg p-8 text-white min-h-full"
             style={{
               background:
                 "linear-gradient(105.99deg, #FF5C70 0%, #F74887 99.63%)",
             }}
           >
-            <h3 className="text-3xl font-extrabold mb-6">Encuentra Tu Match</h3>
+            <h3 className="text-3xl font-extrabold mb-6 ">
+              Encuentra Tu Match
+            </h3>
             <p style={{ maxWidth: 300 }}>
               Responde una serie de preguntas y descubre el candidato mas
               compatible contigo y tus preferencias.
             </p>
           </aside>
           <aside
-            className="w-2/4 rounded-lg p-8 text-white"
+            className="w-full sm:w-3/4 md:w-2/4 rounded-lg p-8 text-white min-h-full"
             style={{
               background: "linear-gradient(105.7deg, #607AD6 0%, #4E64D8 100%)",
             }}
@@ -44,7 +46,7 @@ export default function Home({
           </aside>
         </article>
       </section>
-      <main className="max-w-screen-lg m-auto mb-10">
+      <main className="max-w-screen-lg m-auto mb-10 px-10">
         <PoliticalParties
           politicalParties={politicalParties.political_organizations}
         />
