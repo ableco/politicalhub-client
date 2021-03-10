@@ -11,7 +11,7 @@ export default function Footer() {
         >
           PoliticalHub
         </a>{" "}
-        en coordinación con
+        en coordinación con{" "}
         <a
           href="https://politicalhub-client.herokuapp.com/"
           target="_blank"
