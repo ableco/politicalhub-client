@@ -143,7 +143,7 @@ function CandidateCard({ candidate, showNumber }) {
           <h6 className="flex flex-row items-center justify-between w-full">
             <a
               className="text-primary-base"
-              style={{ maxWidth: "calc(100% - 4rem)" }}
+              style={{ maxWidth: showNumber ? "calc(100% - 4rem)" : null }}
             >
               {titleize(candidate.fullName)}
             </a>

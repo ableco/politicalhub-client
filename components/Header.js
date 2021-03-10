@@ -25,6 +25,11 @@ export function Header({ candidate, politicalParty }) {
                   `${candidate.names}  ${candidate.family_name} ${candidate.mothers_maiden_name}`,
                 )
               : titleize(politicalParty.name)}
+            {candidate.postulation_ubigeo !== "000000" ? (
+              <span className="inline-block font-semibold text-center leading-11 border-2 rounded text-neutral-700 border-neutral-700 w-10 h-10 ml-4">
+                {candidate.number}
+              </span>
+            ) : null}
           </h1>
           {candidate ? (
             <span className="text-neutral-400 px-5">
