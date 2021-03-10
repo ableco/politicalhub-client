@@ -13,7 +13,14 @@ function PastElectionEntryCard({ historicEntry }) {
         <small className="text-neutral-400 text-xs font-semibold uppercase">
           Elecciones
         </small>
-        <p>Participó para el cargo de {titleize(historicEntry.office)}</p>
+        <p>
+          Participó para el cargo de{" "}
+          <span>{titleize(historicEntry.office)}</span> por{" "}
+          <span className="text-primary-base">
+            {titleize(historicEntry.political_organization)}
+          </span>
+          .
+        </p>
       </div>
     </article>
   );
@@ -31,7 +38,36 @@ function ElectedOfficeEntryCard({ historicEntry }) {
         <small className="text-neutral-400 text-xs font-semibold uppercase">
           Cargo Público
         </small>
-        <p>Electo/a como {titleize(historicEntry.office)}</p>
+        <p>
+          Electo/a como <span>{titleize(historicEntry.office)}</span> por{" "}
+          <span className="text-primary-base">
+            {titleize(historicEntry.political_organization)}
+          </span>
+        </p>
+      </div>
+    </article>
+  );
+}
+
+function PartyOfficeEntryCard({ historicEntry }) {
+  return (
+    <article className="flex flex-row">
+      <aside
+        className={`relative box-content w-8 text-xs pt-4 pr-4 border-r-4 border-neutral-200 ${styles.historicEntryYear}`}
+      >
+        {historicEntry.start_year}
+      </aside>
+      <div className="py-4 px-6 mb-12 ml-6 border border-neutral-200 rounded flex-grow max-w-screen-md">
+        <small className="text-neutral-400 text-xs font-semibold uppercase">
+          Vida partidaria
+        </small>
+        <p>
+          Elegido/a para <span>{titleize(historicEntry.office)}</span> de{" "}
+          <span className="text-primary-base">
+            {titleize(historicEntry.political_organization)}
+          </span>
+          .
+        </p>
       </div>
     </article>
   );
@@ -70,6 +106,11 @@ export default function Historial({ candidate }) {
   return (
     <div className="px-8 lg:px-52 py-10">
       {historicEntries.map((historicEntry, index) => {
+        if (historicEntry.type === "party_office") {
+          return (
+            <PartyOfficeEntryCard key={index} historicEntry={historicEntry} />
+          );
+        }
         if (historicEntry.type === "past_election") {
           return (
             <PastElectionEntryCard key={index} historicEntry={historicEntry} />
