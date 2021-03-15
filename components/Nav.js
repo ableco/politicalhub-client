@@ -9,8 +9,8 @@ export function Nav() {
             <a className="text-neutral-800 font-bold">
               <img
                 src="/logo.svg"
-                title="Votemos.pe"
-                alt="Votemos.pe"
+                title="YoVoto.pe"
+                alt="YoVoto.pe"
                 width="156"
               />
             </a>
