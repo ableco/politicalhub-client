@@ -18,7 +18,34 @@ export function Nav() {
         </div>
         <div style={{ flexGrow: 1 }} />
         <div className="flex flex-no-wrap flex-row items-center justify-start space-x-5">
-          <a className="text-primary-base text-xs">¿Quieres ayudar?</a>
+          <a
+            href="https://instagram.com/hazteuna_"
+            target="_blank"
+            className="text-neutral-400 text-xs"
+          >
+            <img
+              src="/instagram.svg"
+              title="Instagram"
+              alt="Instagram"
+              width="16"
+              className="inline mr-2"
+            />
+            hazteuna_
+          </a>
+          <a
+            href="https://instagram.com/impulsopais"
+            target="_blank"
+            className="text-neutral-400 text-xs"
+          >
+            <img
+              src="/instagram.svg"
+              title="Instagram"
+              alt="Instagram"
+              width="16"
+              className="inline mr-2"
+            />
+            impulsopais
+          </a>
           {/* <a className="text-neutral-800 text-xs">Login</a> */}
         </div>
       </div>

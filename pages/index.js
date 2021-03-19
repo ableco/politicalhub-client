@@ -31,6 +31,16 @@ export default function Home({
               Responde una serie de preguntas y descubre el candidato mas
               compatible contigo y tus preferencias.
             </p>
+            <p>
+              <a
+                href="https://match.yovoto.pe"
+                target="_blank"
+                className="inline-block rounded py-3 px-4 mt-6 bg-white font-semibold"
+                style={{ color: "#FF5A82" }}
+              >
+                ¡Jugar ahora!
+              </a>
+            </p>
           </aside>
           <aside
             className="w-full sm:w-3/4 md:w-2/4 rounded-lg p-8 text-white min-h-full"
@@ -43,6 +53,14 @@ export default function Home({
               ¿Qué tan informado estas para votar? Juega a nuestra trivia y reta
               a tus contactos.
             </p>
+            <a
+              href="https://trivia.yovoto.pe"
+              target="_blank"
+              className="inline-block rounded py-3 px-4 mt-6 bg-white font-semibold"
+              style={{ color: "#607AD6" }}
+            >
+              ¡Jugar ahora!
+            </a>
           </aside>
         </article>
       </section>
