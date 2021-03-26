@@ -7,13 +7,16 @@ import Resume from "../../components/Resume";
 import { Header } from "../../components/Header";
 import Tabs from "../../components/Tabs";
 import Ficha from "../../components/Tabs/Ficha";
+import Perfil from "../../components/Tabs/Perfil";
 import Sentencias from "../../components/Tabs/Sentencias";
 // import Declaraciones from "../../components/Tabs/Declaraciones";
 import Historial from "../../components/Tabs/Historial";
 import ContentTab from "../../components/ContentTab";
+import { candidateAnswers } from "../../utils/questionsAndAnswers";
 
-const tabs = [
+const allTabs = [
   { name: "Ficha", component: Ficha },
+  { name: "Perfil Político", component: Perfil },
   { name: "Sentencias", component: Sentencias },
   // { name: "Últimas Declaraciones", component: Declaraciones },
   { name: "Historial Político", component: Historial },
@@ -24,6 +27,11 @@ export default function CandidatePage({
   politicalParty,
   metaPoliticalParties,
 }) {
+  const hasAnswers = candidateAnswers.find((item) => item.id === candidate.id);
+  const tabs = hasAnswers
+    ? allTabs
+    : allTabs.filter((tab) => tab.name !== "Perfil Político");
+
   const router = useRouter();
   const [activeTab, setActiveTab] = useState(
     router.query.activeTab ?? tabs[0].name,
