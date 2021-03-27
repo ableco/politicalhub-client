@@ -19,7 +19,7 @@ export const questions = [
       value1:
         "El Estado debe fiscalizar, pero también debe ser dueño de empresas",
       value2: null,
-      value3: null,
+      value3: "No tengo posición",
       value4: null,
       value5:
         "Las empresas deben ser privadas y el Estado solo tiene que fiscalizarlas",
@@ -41,8 +41,8 @@ export const questions = [
     question: "¿El Estado debe controlar los precios?",
     answers: {
       value1: "Sí, siempre",
-      value2: null,
-      value3: "Solo para ciertos productos o servicios",
+      value2: "Solo para ciertos productos o servicios",
+      value3: "No tengo posición",
       value4: null,
       value5: "No, nunca",
     },
@@ -53,8 +53,8 @@ export const questions = [
       "Sobre la concentración de poder en el mercado (que solo un grupo o muy pocos dominen la oferta de un producto o servicio)...",
     answers: {
       value1: "No debe haber concentración de poder en el mercado nunca",
-      value2: null,
-      value3: "Solo debe haber si el Estado lo regula",
+      value2: "Solo debe haber si el Estado lo regula",
+      value3: "No tengo posición",
       value4: null,
       value5:
         "No hay problema con que haya concentración de poder en el mercado",
@@ -157,10 +157,10 @@ export const questions = [
         "El estado debería financiar las pensiones para todos a través de impuestos principalmente",
       value2:
         "Cada trabajador ahorraría para su vejez en un sistema de fondo individual, y el estado financia con impuestos las pensiones de quienes necesiten",
-      value3: null,
-      value4:
+      value3:
         "Cada trabajador ahorraría para su vejez en un sistema de fondo individual, aportando una parte a un fondo solidario para garantizar las pensiones de quienes necesiten",
-      value5: null,
+      value4: null,
+      value5: "No tengo posición",
     },
   },
   {
@@ -170,9 +170,9 @@ export const questions = [
     answers: {
       value1:
         "Se les debe dar una licencia que se renueve cada cierto tiempo por parte de la SUNEDU/MINEDU",
-      value2: null,
-      value3:
+      value2:
         "Se les debe dar una sola licencia válida para siempre por parte de la SUNEDU/MINEDU",
+      value3: "No tengo posición",
       value4: null,
       value5:
         "No deberían necesitar licenciamiento o lo deberían hacer terceros privados",
@@ -268,7 +268,7 @@ const candidateAnswers4 = {
     2: 1,
     3: 1,
     4: 2,
-    5: 2,
+    5: 3,
     6: 1,
     7: 1,
     8: 1,
@@ -364,7 +364,7 @@ const candidateAnswers8 = {
     10: 5,
     11: 5,
     12: 3,
-    13: 4,
+    13: 5,
     14: 1,
     15: 4,
   },
@@ -386,7 +386,7 @@ const candidateAnswers9 = {
     10: 1,
     11: 1,
     12: 1,
-    13: 4,
+    13: 3,
     14: 1,
     15: 4,
   },
@@ -554,7 +554,7 @@ const candidateAnswers17 = {
     2: 5,
     3: 5,
     4: 3,
-    5: 1,
+    5: 3,
     6: 4,
     7: 5,
     8: 5,
