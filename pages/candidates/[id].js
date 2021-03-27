@@ -7,7 +7,7 @@ import Resume from "../../components/Resume";
 import { Header } from "../../components/Header";
 import Tabs from "../../components/Tabs";
 import Ficha from "../../components/Tabs/Ficha";
-import Perfil from "../../components/Tabs/Perfil";
+// import Perfil from "../../components/Tabs/Perfil";
 import Sentencias from "../../components/Tabs/Sentencias";
 // import Declaraciones from "../../components/Tabs/Declaraciones";
 import Historial from "../../components/Tabs/Historial";
@@ -16,7 +16,7 @@ import { candidateAnswers } from "../../utils/questionsAndAnswers";
 
 const allTabs = [
   { name: "Ficha", component: Ficha },
-  { name: "Perfil Político", component: Perfil },
+  // { name: "Perfil Político", component: Perfil },
   { name: "Sentencias", component: Sentencias },
   // { name: "Últimas Declaraciones", component: Declaraciones },
   { name: "Historial Político", component: Historial },
@@ -40,7 +40,7 @@ export default function CandidatePage({
 
   useEffect(() => {
     setActiveTab(router.query.activeTab ?? tabs[0].name);
-  }, [router.query.activeTab, setActiveTab]);
+  }, [router.query.activeTab, setActiveTab, tabs]);
 
   return (
     <Layout>
