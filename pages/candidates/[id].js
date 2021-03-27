@@ -40,7 +40,8 @@ export default function CandidatePage({
 
   useEffect(() => {
     setActiveTab(router.query.activeTab ?? tabs[0].name);
-  }, [router.query.activeTab, setActiveTab, tabs]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.activeTab, setActiveTab]);
 
   return (
     <Layout>
