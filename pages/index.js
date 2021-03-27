@@ -16,9 +16,9 @@ export default function Home({
     <Layout>
       <Nav />
       <section className="bg-neutral-100 p-10">
-        <article className="flex flex-nowrap flex-col sm:flex-col md:flex-row items-center gap-3 max-w-screen-lg m-auto">
+        <article className="flex flex-nowrap flex-col sm:flex-col md:flex-row items-center max-w-screen-lg m-auto">
           <aside
-            className="w-full sm:w-3/4 md:w-2/4 rounded-lg p-8 text-white min-h-full"
+            className="w-full sm:w-3/4 md:w-2/4 mb-3 sm:mb-3 md:m-0 mr-0 sm:mr-0 md:mr-3 rounded-lg p-8 text-white min-h-full"
             style={{
               background:
                 "linear-gradient(105.99deg, #FF5C70 0%, #F74887 99.63%)",
