@@ -92,10 +92,9 @@ export default function Home({
 }
 
 export async function getServerSideProps() {
-  const responsePoliticalParties = await fetch(
+  const politicalParties = await fetchJSON(
     `${process.env.API_URL}/political_organizations`,
   );
-  const politicalParties = await responsePoliticalParties.json();
   const candidates = await fetchJSON(
     buildURL({ filter: { office: 4, per_page: 9 } }),
   );

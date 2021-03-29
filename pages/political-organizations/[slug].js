@@ -8,6 +8,8 @@ import { Header } from "../../components/Header";
 import Tabs from "../../components/Tabs";
 import Candidatos from "../../components/Tabs/Candidatos";
 import ContentTab from "../../components/ContentTab";
+import buildURL from "../../utils/buildURL";
+import fetchJSON from "../../utils/fetchJSON";
 
 const tabs = [{ name: "Candidatos", component: Candidatos }];
 
@@ -50,24 +52,34 @@ export default function PoliticalPartyPage({
 export async function getServerSideProps({ params }) {
   const { slug } = params;
 
-  const responsePoliticalParty = await fetch(
+  const politicalParty = await fetchJSON(
     `${process.env.API_URL}/political_organizations/${slug}`,
   );
-  const politicalParty = await responsePoliticalParty.json();
 
-  const responseCandidates = await fetch(
-    `${process.env.API_URL}/candidates?political_organization=${politicalParty.political_organization.id}`,
+  const candidates = await fetchJSON(
+    buildURL({
+      filter: {
+        political_organization: politicalParty.political_organization.id,
+      },
+    }),
   );
-  const candidates = await responseCandidates.json();
+  const presidentialCandidates = await fetchJSON(
+    buildURL({
+      filter: {
+        political_organization: politicalParty.political_organization.id,
+        office: [1, 2],
+      },
+    }),
+  );
 
-  const responsePoliticalParties = await fetch(
+  const politicalParties = await fetchJSON(
     `${process.env.API_URL}/political_organizations`,
   );
-  const politicalParties = await responsePoliticalParties.json();
 
   return {
     props: {
       politicalParty: politicalParty.political_organization,
+      presidentialCandidates,
       candidates,
       metaPoliticalParties: politicalParties.meta,
     },
