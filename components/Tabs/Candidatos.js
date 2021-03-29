@@ -7,7 +7,7 @@ export default function Candidatos({ candidates, politicalParty }) {
       <Candidates
         candidates={candidates}
         politicalParty={politicalParty}
-        filter={{ office: [1, 2], per_page: 20 }}
+        filter={{ office: [1, 2, 3], per_page: 20 }}
       />
       <h2 className="text-2xl font-extrabold">Al Congreso</h2>
       <Candidates

@@ -67,7 +67,7 @@ export async function getServerSideProps({ params }) {
     buildURL({
       filter: {
         political_organization: politicalParty.political_organization.id,
-        office: [1, 2],
+        office: [1, 2, 3],
       },
     }),
   );
