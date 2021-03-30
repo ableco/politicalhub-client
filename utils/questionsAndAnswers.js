@@ -214,6 +214,7 @@ const candidateAnswers1 = {
     14: 1,
     15: 2,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/accion-popular/",
 };
 
 // Cesar Acuña Peralta
@@ -236,6 +237,7 @@ const candidateAnswers2 = {
     14: 2,
     15: 2,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/alianza-para-el-progreso/",
 };
 
 // Hernando De Soto Polar
@@ -258,6 +260,7 @@ const candidateAnswers3 = {
     14: 3,
     15: 2,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/avanza-pais/",
 };
 
 // Andres Avelino Alcantara Paredes
@@ -280,6 +283,7 @@ const candidateAnswers4 = {
     14: 3,
     15: 2,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/democracia-directa/",
 };
 
 // Marco Antonio Arana Zegarra
@@ -302,6 +306,7 @@ const candidateAnswers5 = {
     14: 1,
     15: 4,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/frente-amplio/",
 };
 
 // Keiko Sofia Fujimori Higuchi
@@ -324,6 +329,7 @@ const candidateAnswers6 = {
     14: 1,
     15: 4,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/fuerza-popular/",
 };
 
 // Veronika Fanny Mendoza Frisch
@@ -346,6 +352,7 @@ const candidateAnswers7 = {
     14: 1,
     15: 1,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/juntos-por-el-peru/",
 };
 
 // Daniel Enrique Salaverry Villa
@@ -368,6 +375,7 @@ const candidateAnswers8 = {
     14: 1,
     15: 4,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/somos-peru/",
 };
 
 // Julio Armando Guzman Caceres
@@ -390,6 +398,7 @@ const candidateAnswers9 = {
     14: 1,
     15: 4,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/partido-morado/",
 };
 
 // Ollanta Moises Humala Tasso
@@ -412,6 +421,7 @@ const candidateAnswers10 = {
     14: 1,
     15: 4,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/partido-nacionalista/",
 };
 
 // Jose Pedro Castillo Terrones
@@ -434,6 +444,7 @@ const candidateAnswers11 = {
     14: 3,
     15: 1,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/peru-libre/",
 };
 
 // Alberto Ismael Beingolea Delgado
@@ -456,6 +467,7 @@ const candidateAnswers12 = {
     14: 1,
     15: 1,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/partido-popular-cristiano/",
 };
 
 // Rafael Gaston Tadeo Milagros Santos Normand
@@ -478,6 +490,7 @@ const candidateAnswers13 = {
     14: 3,
     15: 1,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/peru-patria-segura/",
 };
 
 // Daniel Belizario Urresti Elera
@@ -500,6 +513,7 @@ const candidateAnswers14 = {
     14: 1,
     15: 4,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/podemos-peru/",
 };
 
 // Ciro Alfredo Galvez Herrera
@@ -522,6 +536,7 @@ const candidateAnswers15 = {
     14: 3,
     15: 1,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/runa/",
 };
 
 // George Patrick Forsyth Sommer
@@ -544,6 +559,7 @@ const candidateAnswers16 = {
     14: 1,
     15: 2,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/victoria-nacional/",
 };
 
 // Rafael Bernardo Lopez Aliaga Cazorla
@@ -566,6 +582,7 @@ const candidateAnswers17 = {
     14: 5,
     15: 2,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/renovacion-popular/",
 };
 
 // Jose Alejandro Vega Antonio
@@ -588,6 +605,7 @@ const candidateAnswers18 = {
     14: 5,
     15: 1,
   },
+  source: "https://impulsopais.pe/p/yovoto/fuentes/union-por-el-peru/",
 };
 
 export const candidateAnswers = [

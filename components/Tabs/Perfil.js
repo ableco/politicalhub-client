@@ -28,6 +28,17 @@ export default function Ficha({ candidate }) {
               </div>
             );
           })}
+          <div className="mt-4 border-t border-neutral-200">
+            <p className="text-neutral-800 text-sm mt-2">
+              <span className="font-semibold">Fuente: </span>
+              <a
+                href={answers.source}
+                className="text-primary-base text-underline"
+              >
+                {answers.source}
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
