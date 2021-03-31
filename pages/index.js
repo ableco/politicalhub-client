@@ -24,12 +24,9 @@ export default function Home({
                 "linear-gradient(105.99deg, #FF5C70 0%, #F74887 99.63%)",
             }}
           >
-            <h3 className="text-3xl font-extrabold mb-6 ">
-              Encuentra Tu Match
-            </h3>
+            <h3 className="text-3xl font-extrabold mb-6 ">Busco candidato</h3>
             <p style={{ maxWidth: 300 }}>
-              Responde una serie de preguntas y descubre el candidato mas
-              compatible contigo y tus preferencias.
+              Descubre en 15 preguntas ¿qué candidato piensa como tú?
             </p>
             <p>
               <a
@@ -48,9 +45,9 @@ export default function Home({
               background: "linear-gradient(105.7deg, #607AD6 0%, #4E64D8 100%)",
             }}
           >
-            <h3 className="text-3xl font-extrabold mb-6">Trivia Electoral</h3>
+            <h3 className="text-3xl font-extrabold mb-6">Bicentrivia</h3>
             <p style={{ maxWidth: 300 }}>
-              ¿Qué tan informado estas para votar? Juega a nuestra trivia y reta
+              ¿Te acuerdas de todo lo que pasó en los últimos años? Juega y reta
               a tus contactos.
             </p>
             <a

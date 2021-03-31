@@ -1,4 +1,6 @@
 import Link from "next/link";
+import HazteUna from "./Icons/HazteUna";
+import ImpulsoPais from "./Icons/ImpulsoPais";
 
 export function Nav() {
   return (
@@ -21,8 +23,9 @@ export function Nav() {
           <a
             href="https://instagram.com/hazteuna_"
             target="_blank"
-            className="text-neutral-400 text-xs"
+            className="flex flex-no-wrap flex-row items-center space-x-1 text-neutral-400 text-xs"
           >
+            <HazteUna width={null} height="24" />
             <img
               src="/instagram.svg"
               title="Instagram"
@@ -30,13 +33,14 @@ export function Nav() {
               width="16"
               className="inline mr-2"
             />
-            hazteuna_
+            <span>hazteuna_</span>
           </a>
           <a
             href="https://instagram.com/impulsopais"
             target="_blank"
-            className="text-neutral-400 text-xs"
+            className="flex flex-no-wrap flex-row items-center space-x-1 text-neutral-400 text-xs"
           >
+            <ImpulsoPais height="24" />
             <img
               src="/instagram.svg"
               title="Instagram"
@@ -44,7 +48,7 @@ export function Nav() {
               width="16"
               className="inline mr-2"
             />
-            impulsopais
+            <span>impulsopais</span>
           </a>
           {/* <a className="text-neutral-800 text-xs">Login</a> */}
         </div>
