@@ -160,7 +160,9 @@ export default function Ficha({ candidate }) {
           Ingreso de Bienes y Rentas
         </h3>
         <div className="px-6 pt-4 pb-6 border-b border-neutral-200">
-          <h4 className="text-xs text-neutral-400 font-semibold">INGRESOS</h4>
+          <h4 className="text-xs text-neutral-400 font-semibold">
+            INGRESOS ANUALES
+          </h4>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
             <div className="flex flex-col mt-4">
               <p className="text-neutral-800 text-sm font-normal">
