@@ -1,10 +1,12 @@
 import Link from "next/link";
 import HazteUna from "./Icons/HazteUna";
 import ImpulsoPais from "./Icons/ImpulsoPais";
+import OGMetas from "./OGMetas";
 
 export function Nav() {
   return (
     <nav className="p-4 border-b border-neutral-200">
+      <OGMetas />
       <div className="flex flex-no-wrap flex-col sm:flex-col md:flex-row items-center justify-center sm:justify-center md:justify-start max-w-screen-lg m-auto">
         <div className="flex flex-no-wrap flex-row items-center justify-start space-x-5">
           <Link href="/">
