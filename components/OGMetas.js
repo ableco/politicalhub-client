@@ -5,7 +5,7 @@ export default function OGMetas({
   description = null,
   url = "https://www.yovoto.pe/",
 }) {
-  const image = "/open-graph.png";
+  const image = `${process.env.EDGE_URL || ""}/open-graph.png`;
 
   return (
     <Head>
@@ -52,7 +52,7 @@ export default function OGMetas({
         />
       )}
       <title key="title">{title}</title>
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href={`${process.env.EDGE_URL || ""}/favicon.ico`} />
       <script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-61KMKZCLYX"

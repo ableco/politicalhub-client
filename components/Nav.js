@@ -12,7 +12,7 @@ export function Nav() {
           <Link href="/">
             <a className="text-neutral-800 font-bold">
               <img
-                src="/logo.svg"
+                src={`${process.env.EDGE_URL || ""}/logo.svg`}
                 title="YoVoto.pe"
                 alt="YoVoto.pe"
                 width="156"
@@ -29,7 +29,7 @@ export function Nav() {
           >
             <HazteUna width={null} height="24" />
             <img
-              src="/instagram.svg"
+              src={`${process.env.EDGE_URL || ""}/instagram.svg`}
               title="Instagram"
               alt="Instagram"
               width="16"
@@ -44,7 +44,7 @@ export function Nav() {
           >
             <ImpulsoPais height="24" />
             <img
-              src="/instagram.svg"
+              src={`${process.env.EDGE_URL || ""}/instagram.svg`}
               title="Instagram"
               alt="Instagram"
               width="16"

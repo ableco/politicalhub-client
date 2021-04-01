@@ -33,7 +33,7 @@ export default function Footer() {
       <p className="max-w-screen-lg m-auto text-neutral-400 flex flex-row items-center justify-center gap-8 mt-4">
         <a href="http://www.hazteuna.com/" target="_blank">
           <img
-            src="/HazteUna.png"
+            src={`${process.env.EDGE_URL || ""}/HazteUna.png`}
             title="Hazte Una"
             alt="Hazte Una"
             width="52"
@@ -41,7 +41,7 @@ export default function Footer() {
         </a>
         <a href="http://www.impulsopais.pe/" target="_blank">
           <img
-            src="/ImpulsoPais.png"
+            src={`${process.env.EDGE_URL || ""}/ImpulsoPais.png`}
             title="ImpulsoPais"
             alt="ImpulsoPais"
             width="80"
@@ -49,7 +49,7 @@ export default function Footer() {
         </a>
         <a href="https://politicalhub-client.herokuapp.com/" target="_blank">
           <img
-            src="/PoliticalHub.png"
+            src={`${process.env.EDGE_URL || ""}/PoliticalHub.png`}
             title="PoliticalHub"
             alt="PoliticalHub"
             width="48"
