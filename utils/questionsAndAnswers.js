@@ -350,7 +350,7 @@ const candidateAnswers7 = {
     12: 1,
     13: 1,
     14: 1,
-    15: 1,
+    15: 4,
   },
   source: "https://impulsopais.pe/p/yovoto/fuentes/juntos-por-el-peru/",
 };
